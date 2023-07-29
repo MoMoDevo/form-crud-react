@@ -10,6 +10,8 @@ const Form = () => {
     const [items,setItems]=useState(inistialArtray)
 
 
+
+
 // having a prepared function to add item and with the help 
 //of setItems it will put the new created  to current state 
 // but I add the curret state
@@ -27,9 +29,13 @@ const Form = () => {
 
 
      } 
- 
-  return (
-    <>
+     function handleDeleteItem(title) {
+        setItems((items) => items.filter((item) => item.title !== title));
+      }
+      
+      return (
+          <>
+          <p> You have {items.length} items now! </p>
     <div>
         <form onSubmit={handrlAdd}>
             <input type="text" value={desc} onChange={(e)=>setDesc(e.target.value)} />
@@ -54,12 +60,16 @@ const Form = () => {
                 <p> desc:{it.desc} </p>
                 <p>title:{it.title} </p>
                 <p>amount:{it.amount} </p>
- 
+                <button onClick={()=> handleDeleteItem(title)} className="btn">delete</button>
+       
             </div>
         )) } 
         
     </div>
     <button onClick={()=>setItems([])}>deleetAll</button>
+    <div className="flex">
+        one
+    </div>
         </>
   )
 }
